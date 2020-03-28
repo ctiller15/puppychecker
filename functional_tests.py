@@ -16,7 +16,7 @@ class LandingPageTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         # She notices the main page tells here where she is.
-        self.assertIn('Puppychecker', self.browser.title)
+        self.assertIn('Pupchecker', self.browser.title)
         
         self.fail('Finish the test!')
 
