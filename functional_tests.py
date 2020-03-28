@@ -17,14 +17,28 @@ class LandingPageTest(unittest.TestCase):
 
         # She notices the main page tells here where she is.
         self.assertIn('Pupchecker', self.browser.title)
-        
-        self.fail('Finish the test!')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('pup', header_text)
 
         # She sees a prompt to input an image.
+        file_input = self.browser.find_element_by_id('id_input_photo')
+        self.assertEqual(file_input.get_attribute('placeholder'),
+                'submit a pup pic'
+                )
 
         # She submits an image, and it redirects to a page with her result.
+        file_input.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        picture = self.browser.find_element_by_id('id_submitted_photo')
+        self.assertEqual(picture, file_input)
 
         # It tells her her image is a puppy.
+        result = self.browser.find_element_by_id('id_photo_result')
+        self.assertIn('puppy', result.browser.text)
+
+        # There is still a second input field inviting the user to keep trying out images to see if it is or is not a puppy.
+        self.fail('Finish the test!')
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
