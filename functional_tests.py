@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 import unittest
 
 class LandingPageTest(unittest.TestCase):
@@ -27,10 +29,10 @@ class LandingPageTest(unittest.TestCase):
                 )
 
         # She submits an image, and it redirects to a page with her result.
-        file_input.send_keys(Keys.ENTER)
+        file_input.send_keys('pupcheck/test/images/puppy_test_image.jpg')
         time.sleep(1)
 
-        picture = self.browser.find_element_by_id('id_submitted_photo')
+        picture = self.browser.find_element_by_id('id_input_photo')
         self.assertEqual(picture, file_input)
 
         # It tells her her image is a puppy.

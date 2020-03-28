@@ -1,3 +1,13 @@
 <html>
-	<title>Pupchecker</title>
+	<head>
+		<title>Pupchecker</title>
+	</head>
+	<body>
+		<h1>Check your pup!</h1>
+		<form method="POST">
+			<input id="id_input_photo"
+				placeholder="submit a pup pic"/>
+			{% csrf_token %}
+		</form>
+	</body>
 </html>
