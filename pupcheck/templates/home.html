@@ -9,9 +9,11 @@
 		<form method="POST" enctype="multipart/form-data" action="/">
 			<input 
 				type="file"
+				name="file"
 				id="id_input_photo"
 				placeholder="submit a pup pic"
 				onchange="loadFile(event);" />
+			<input type="submit", value="upload">
 			<img id="blah" src="#" alt="your_image" />
 
 			{% csrf_token %}
