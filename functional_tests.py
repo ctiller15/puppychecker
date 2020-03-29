@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import unittest
+import os
 
 class LandingPageTest(unittest.TestCase):
 
@@ -23,13 +24,17 @@ class LandingPageTest(unittest.TestCase):
         self.assertIn('pup', header_text)
 
         # She sees a prompt to input an image.
-        file_input = self.browser.find_element_by_id('id_input_photo')
+        file_input = self.browser.find_element_by_css_selector('input[type="file"]#id_input_photo')
         self.assertEqual(file_input.get_attribute('placeholder'),
                 'submit a pup pic'
                 )
 
+        curdir = os.getcwd()
+
+        print(curdir)
+
         # She submits an image, and it redirects to a page with her result.
-        file_input.send_keys('pupcheck/test/images/puppy_test_image.jpg')
+        file_input.send_keys(curdir + '/pupcheck/test/images/puppy_image.jpg')
         time.sleep(1)
 
         picture = self.browser.find_element_by_id('id_input_photo')
