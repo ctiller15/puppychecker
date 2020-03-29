@@ -35,7 +35,7 @@ class LandingPageTest(unittest.TestCase):
 
         # She submits an image, and it redirects to a page with her result.
         file_input.send_keys(curdir + '/pupcheck/test/images/puppy_image.jpg')
-        time.sleep(1)
+        time.sleep(10)
 
         picture = self.browser.find_element_by_id('id_input_photo')
         self.assertEqual(picture, file_input)
