@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import os
+from pupcheck.services.image_analysis import puppy_or_dog_analysis as pda
 
 # Create your views here.
 def home_page(request):
@@ -19,5 +20,9 @@ def home_page(request):
             for chunk in test.chunks():
                 destination.write(chunk)
 
-        return HttpResponseRedirect('/')
+        predicted_class = pda.analyze_age(test)
+
+        print(predicted_class)
+
+        return render(request, 'home.html', {'predicted': predicted_class})
     return render(request, 'home.html')
